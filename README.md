@@ -1,2 +1,3 @@
-# extract
-extract compressed file
+# gextract
+
+extract compressed file using golang
