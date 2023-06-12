@@ -3,6 +3,8 @@ package extract
 import (
 	"os"
 
+	"github.com/jaronnie/extract/types"
+
 	"github.com/h2non/filetype"
 )
 
@@ -24,13 +26,7 @@ func Extract(source string, opts ...Opt) error {
 	if err != nil {
 		return err
 	}
-
-	switch t.Extension {
-	case "zip":
-	case "gzip":
-	}
-
-	return nil
+	return types.NewIExtract(t.Extension).Extract(source, option.p)
 }
 
 func defaultOption(option *Option) (err error) {
