@@ -12,6 +12,7 @@ type ZIP struct {
 
 func (g *ZIP) Extract(source string, p string) error {
 	r, err := zip.OpenReader(source)
+	defer r.Close()
 	if err != nil {
 		return err
 	}
@@ -30,7 +31,7 @@ func (g *ZIP) Extract(source string, p string) error {
 			if err != nil {
 				return err
 			}
-			if err = os.WriteFile(filename, all, 0o644); err != nil {
+			if err = os.WriteFile(filename, all, f.Mode()); err != nil {
 				return err
 			}
 		}
@@ -38,5 +39,5 @@ func (g *ZIP) Extract(source string, p string) error {
 			return err
 		}
 	}
-	return r.Close()
+	return nil
 }

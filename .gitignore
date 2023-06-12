@@ -2,3 +2,5 @@
 .vscode
 .idea
 *.zip
+*.tar.gz
+*tar.xz

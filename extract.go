@@ -26,7 +26,11 @@ func Extract(source string, opts ...Opt) error {
 	if err != nil {
 		return err
 	}
-	return types.NewIExtract(t.Extension).Extract(source, option.p)
+	extract, err := types.NewIExtract(t.Extension)
+	if err != nil {
+		return err
+	}
+	return extract.Extract(source, option.p)
 }
 
 func defaultOption(option *Option) (err error) {
